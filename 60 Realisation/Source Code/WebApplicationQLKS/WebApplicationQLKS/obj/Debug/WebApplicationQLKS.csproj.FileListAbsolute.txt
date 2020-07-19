@@ -1,0 +1,248 @@
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\WebApplicationQLKS.dll.config
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\WebApplicationQLKS.dll
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\WebApplicationQLKS.pdb
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\csc.exe
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\csc.exe.config
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\csc.rsp
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\csi.exe
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\csi.exe.config
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\csi.rsp
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\Microsoft.CodeAnalysis.dll
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\Microsoft.CSharp.Core.targets
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\Microsoft.Managed.Core.targets
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\Microsoft.VisualBasic.Core.targets
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\Microsoft.Win32.Primitives.dll
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\System.AppContext.dll
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\System.Collections.Immutable.dll
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\System.Console.dll
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\System.Diagnostics.DiagnosticSource.dll
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\System.Diagnostics.StackTrace.dll
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\System.Globalization.Calendars.dll
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\System.IO.Compression.dll
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\System.IO.Compression.ZipFile.dll
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\System.IO.FileSystem.dll
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\System.IO.FileSystem.Primitives.dll
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\System.Net.Http.dll
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\System.Net.Sockets.dll
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\System.Reflection.Metadata.dll
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\System.Security.Cryptography.Encoding.dll
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\System.Security.Cryptography.Primitives.dll
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\System.Text.Encoding.CodePages.dll
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\System.Threading.Tasks.Extensions.dll
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\System.ValueTuple.dll
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\System.Xml.ReaderWriter.dll
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\System.Xml.XmlDocument.dll
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\System.Xml.XPath.dll
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\System.Xml.XPath.XDocument.dll
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\vbc.exe
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\vbc.exe.config
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\vbc.rsp
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\VBCSCompiler.exe
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\VBCSCompiler.exe.config
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\Antlr3.Runtime.dll
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\EntityFramework.dll
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\EntityFramework.SqlServer.dll
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\Microsoft.AspNet.Identity.Core.dll
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\Microsoft.AspNet.Identity.Owin.dll
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\Microsoft.Owin.dll
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\Microsoft.Owin.Host.SystemWeb.dll
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\Microsoft.Owin.Security.Cookies.dll
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\Microsoft.Owin.Security.dll
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\Microsoft.Owin.Security.Facebook.dll
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\Microsoft.Owin.Security.Google.dll
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\Microsoft.Owin.Security.OAuth.dll
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\Microsoft.Owin.Security.Twitter.dll
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\Microsoft.Web.Infrastructure.dll
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\Newtonsoft.Json.dll
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\Owin.dll
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\System.Web.Helpers.dll
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\System.Web.Mvc.dll
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\System.Web.Optimization.dll
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\System.Web.Razor.dll
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\System.Web.WebPages.Deployment.dll
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\System.Web.WebPages.dll
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\System.Web.WebPages.Razor.dll
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\WebGrease.dll
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\System.Web.Helpers.xml
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\System.Web.Mvc.xml
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\System.Web.Optimization.xml
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\System.Web.Razor.xml
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\System.Web.WebPages.xml
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\System.Web.WebPages.Deployment.xml
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\System.Web.WebPages.Razor.xml
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\Newtonsoft.Json.xml
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\Antlr3.Runtime.pdb
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\EntityFramework.xml
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\EntityFramework.SqlServer.xml
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\Microsoft.AspNet.Identity.Core.xml
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\Microsoft.AspNet.Identity.Owin.xml
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\Microsoft.Owin.xml
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\Microsoft.Owin.Host.SystemWeb.xml
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\Microsoft.Owin.Security.xml
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\Microsoft.Owin.Security.Facebook.xml
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\Microsoft.Owin.Security.Cookies.xml
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\Microsoft.Owin.Security.Google.xml
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\Microsoft.Owin.Security.Twitter.xml
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\Microsoft.Owin.Security.OAuth.xml
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\obj\Debug\WebApplicationQLKS.csproj.CoreCompileInputs.cache
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\obj\Debug\WebApplicationQLKS.csproj.CopyComplete
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\obj\Debug\WebApplicationQLKS.dll
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\obj\Debug\WebApplicationQLKS.pdb
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\obj\Debug\WebApplicationQLKS.csprojAssemblyReference.cache
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\CrystalDecisions.CrystalReports.Engine.dll
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\CrystalDecisions.ReportSource.dll
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\CrystalDecisions.Shared.dll
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\CrystalDecisions.ReportAppServer.DataDefModel.dll
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\CrystalDecisions.ReportAppServer.ClientDoc.dll
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\CrystalDecisions.ReportAppServer.ReportDefModel.dll
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\CrystalDecisions.ReportAppServer.Controllers.dll
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\CrystalDecisions.ReportAppServer.CommLayer.dll
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\CrystalDecisions.ReportAppServer.DataSetConversion.dll
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\CrystalDecisions.ReportAppServer.Prompting.dll
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\CrystalDecisions.ReportAppServer.XmlSerialize.dll
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\CrystalDecisions.ReportAppServer.CubeDefModel.dll
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\CrystalDecisions.ReportAppServer.CommonObjectModel.dll
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\CrystalDecisions.ReportAppServer.ObjectFactory.dll
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\CrystalDecisions.ReportAppServer.CommonControls.dll
+E:\CNPMNC\WebApplicationQLKS\WebApplicationQLKS\bin\stdole.dll
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\WebApplicationQLKS.dll.config
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\WebApplicationQLKS.dll
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\WebApplicationQLKS.pdb
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\csc.exe
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\csc.exe.config
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\csc.rsp
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\csi.exe
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\csi.exe.config
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\csi.rsp
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\Microsoft.CodeAnalysis.dll
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\Microsoft.CSharp.Core.targets
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\Microsoft.Managed.Core.targets
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\Microsoft.VisualBasic.Core.targets
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\Microsoft.Win32.Primitives.dll
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\System.AppContext.dll
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\System.Collections.Immutable.dll
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\System.Console.dll
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\System.Diagnostics.DiagnosticSource.dll
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\System.Diagnostics.StackTrace.dll
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\System.Globalization.Calendars.dll
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\System.IO.Compression.dll
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\System.IO.Compression.ZipFile.dll
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\System.IO.FileSystem.dll
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\System.IO.FileSystem.Primitives.dll
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\System.Net.Http.dll
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\System.Net.Sockets.dll
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\System.Reflection.Metadata.dll
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\System.Security.Cryptography.Encoding.dll
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\System.Security.Cryptography.Primitives.dll
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\System.Text.Encoding.CodePages.dll
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\System.Threading.Tasks.Extensions.dll
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\System.ValueTuple.dll
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\System.Xml.ReaderWriter.dll
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\System.Xml.XmlDocument.dll
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\System.Xml.XPath.dll
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\System.Xml.XPath.XDocument.dll
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\vbc.exe
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\vbc.exe.config
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\vbc.rsp
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\VBCSCompiler.exe
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\roslyn\VBCSCompiler.exe.config
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\Antlr3.Runtime.dll
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\CrystalDecisions.CrystalReports.Engine.dll
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\CrystalDecisions.ReportSource.dll
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\CrystalDecisions.Shared.dll
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\EntityFramework.dll
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\EntityFramework.SqlServer.dll
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\Microsoft.AspNet.Identity.Core.dll
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\Microsoft.AspNet.Identity.Owin.dll
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\Microsoft.Owin.dll
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\Microsoft.Owin.Host.SystemWeb.dll
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\Microsoft.Owin.Security.Cookies.dll
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\Microsoft.Owin.Security.dll
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\Microsoft.Owin.Security.Facebook.dll
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\Microsoft.Owin.Security.Google.dll
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\Microsoft.Owin.Security.MicrosoftAccount.dll
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\Microsoft.Owin.Security.OAuth.dll
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\Microsoft.Owin.Security.Twitter.dll
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\Microsoft.Web.Infrastructure.dll
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\Newtonsoft.Json.dll
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\Owin.dll
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\System.Web.Helpers.dll
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\System.Web.Mvc.dll
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\System.Web.Optimization.dll
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\System.Web.Razor.dll
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\System.Web.WebPages.Deployment.dll
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\System.Web.WebPages.dll
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\System.Web.WebPages.Razor.dll
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\WebGrease.dll
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\CrystalDecisions.ReportAppServer.DataDefModel.dll
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\CrystalDecisions.ReportAppServer.ClientDoc.dll
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\CrystalDecisions.ReportAppServer.ReportDefModel.dll
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\CrystalDecisions.ReportAppServer.Controllers.dll
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\CrystalDecisions.ReportAppServer.CommLayer.dll
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\CrystalDecisions.ReportAppServer.DataSetConversion.dll
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\CrystalDecisions.ReportAppServer.Prompting.dll
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\CrystalDecisions.ReportAppServer.XmlSerialize.dll
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\CrystalDecisions.ReportAppServer.CubeDefModel.dll
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\CrystalDecisions.ReportAppServer.CommonObjectModel.dll
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\CrystalDecisions.ReportAppServer.ObjectFactory.dll
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\CrystalDecisions.ReportAppServer.CommonControls.dll
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\stdole.dll
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\System.Web.Helpers.xml
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\System.Web.Mvc.xml
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\System.Web.Optimization.xml
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\System.Web.Razor.xml
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\System.Web.WebPages.xml
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\System.Web.WebPages.Deployment.xml
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\System.Web.WebPages.Razor.xml
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\Newtonsoft.Json.xml
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\Antlr3.Runtime.pdb
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\EntityFramework.xml
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\EntityFramework.SqlServer.xml
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\Microsoft.AspNet.Identity.Core.xml
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\Microsoft.AspNet.Identity.Owin.xml
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\Microsoft.Owin.xml
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\Microsoft.Owin.Host.SystemWeb.xml
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\Microsoft.Owin.Security.xml
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\Microsoft.Owin.Security.Facebook.xml
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\Microsoft.Owin.Security.Cookies.xml
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\Microsoft.Owin.Security.Google.xml
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\Microsoft.Owin.Security.Twitter.xml
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\Microsoft.Owin.Security.OAuth.xml
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\obj\Debug\WebApplicationQLKS.csprojAssemblyReference.cache
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\obj\Debug\WebApplicationQLKS.csproj.CoreCompileInputs.cache
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\obj\Debug\WebApplicationQLKS.csproj.CopyComplete
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\obj\Debug\WebApplicationQLKS.dll
+E:\G26_QLKS\60 Realisation\Source Code\WebApplicationQLKS\WebApplicationQLKS\obj\Debug\WebApplicationQLKS.pdb

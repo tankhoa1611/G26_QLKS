@@ -1,0 +1,140 @@
+﻿@model WebApplicationQLKS.Models.Order
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Chi Tiết Phiếu Đặt Phòng</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Room.RoomName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Room.RoomName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Room.RoomType.TypeName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Room.RoomType.TypeName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Room.RoomType.Price)
+        </dt>
+        <dd> @Model.Room.RoomType.Price.ToString("#,##0").Replace(',', '.') VNĐ / 1 ngày</dd>
+
+        @*<dd>
+            @Html.DisplayFor(model => model.Room.RoomType.Price.ToString("#,##0").Replace(',', '.'))<br /><span> 1 Ngày</span>
+        </dd>*@
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CheckIn)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CheckIn)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CheckOut)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CheckOut)
+        </dd>
+    </dl>
+</div>
+
+<h3>Thông Tin khách hàng</h3>
+<table class="table table-condensed table-bordered">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(modelitem => Model.OrderDetails.FirstOrDefault().ApplicationContext.FullName)
+        </th>
+        <th>@Html.DisplayNameFor(modelitem => Model.OrderDetails.FirstOrDefault().Guest.PhoneNumber)</th>
+        <th>@Html.DisplayNameFor(modelitem => Model.OrderDetails.FirstOrDefault().Guest.Nation)</th>
+        <th>@Html.DisplayNameFor(modelitem => Model.OrderDetails.FirstOrDefault().Guest.IdentityNumber)</th>
+        <th>@Html.DisplayNameFor(modelitem => Model.OrderDetails.FirstOrDefault().Guest.Address)</th>
+    </tr>
+    @foreach (var item in Model.OrderDetails)
+    {
+        <tr>
+            @if (item.ApplicationContext != null)
+            {
+                <td>
+                    @Html.DisplayFor(modelitem => item.ApplicationContext.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelitem => item.ApplicationContext.PhoneNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelitem => item.ApplicationContext.Nation)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelitem => item.ApplicationContext.IdentityNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelitem => item.ApplicationContext.Address)
+                </td>
+            }
+            @if (item.Guest != null)
+            {
+                <td>
+                    @Html.DisplayFor(modelitem => item.Guest.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelitem => item.Guest.PhoneNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelitem => item.Guest.Nation)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelitem => item.Guest.IdentityNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelitem => item.Guest.Address)
+                </td>
+            }
+        </tr>
+    }
+
+    @*@foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdentityNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PhoneNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nation)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.GuestId }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.GuestId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.GuestId })
+                </td>
+            </tr>
+        }*@
+
+</table>
+
+@if (User.IsInRole("Admin") || User.IsInRole("Employee"))
+{
+    <p>
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

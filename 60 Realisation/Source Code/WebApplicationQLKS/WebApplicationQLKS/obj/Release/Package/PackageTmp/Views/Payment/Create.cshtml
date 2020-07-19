@@ -1,0 +1,56 @@
+﻿@model WebApplicationQLKS.Models.Payment
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+@{
+    var customer = @ViewBag.Customer;
+    var room = @ViewBag.room;
+}
+<h2>Hoá đơn thanh toán</h2>
+<table class="table table-bordered">
+    <tr>
+        <th>Người đại diện</th>
+        <td>@customer.FullName</td>
+        <th>Đơn Giá</th>
+    </tr>
+    <tr>
+        <th>Địa chỉ</th>
+        <td>@customer.Address</td>
+        <td>@ViewBag.price.ToString("#,##0").Replace(',', '.') VNĐ</td>
+    </tr>
+    <tr>
+        <th>Trị giá</th>
+        <td>@ViewBag.factor</td>
+        <th>Thành tiền</th>
+    </tr>
+    <tr>
+        <th>Phòng</th>
+        <th>Số ngày thuê</th>
+        <td>@ViewBag.sum.ToString("#,##0").Replace(',', '.') VNĐ</td>
+    </tr>
+    <tr>
+        <td>@room.RoomName</td>
+        <td>@ViewBag.day</td>
+        <td></td>
+    </tr>
+</table>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">            
+            <div class="col-md-10">
+                <input type="submit" value="Thanh toán" class="btn btn-default" />
+                @Html.ActionLink("Trở về", "Index",null,htmlAttributes: new { @class="btn btn-default"})
+            </div>
+        </div>
+    </div>
+}
+
+

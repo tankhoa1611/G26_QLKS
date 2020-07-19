@@ -1,0 +1,1178 @@
+﻿@model WebApplicationQLKS.Models.RoomModel
+@using Microsoft.AspNet.Identity
+@{
+    var u = Session["User"] as WebApplicationQLKS.Models.ApplicationContext;
+}
+@{
+    ViewBag.Title = "SoDoPhong";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2 style="text-align:center">Sơ đồ phòng</h2>
+<div class="container">
+    <br>
+    <!-- Nav tabs -->
+
+    <ul class="nav nav-tabs" role="tablist">
+        @if (Request.IsAuthenticated && (User.IsInRole("Admin") || User.IsInRole("Employe")))
+        {
+            <li class="nav-room">
+                <a class="nav-link active" data-toggle="tab" href="#all">Tất cả- <span class="badge">@Model.Rooms.Count()</span></a>
+            </li>
+            <li class="nav-room">
+                <a class="nav-link" data-toggle="tab" href="#empty">Trống - <span class="badge">@Model.Rooms.Count(x => x.RoomStatus.StatusID == 1)</span></a>
+            </li>
+            <li class="nav-room">
+                <a class="nav-link" data-toggle="tab" href="#ordered">Đã đặt - <span class="badge">@Model.Rooms.Count(x => x.RoomStatus.StatusID == 2)</span></a>
+            </li>
+            @*<li class="nav-room">
+                <a class="nav-link" data-toggle="tab" href="#dirty">Chờ dọn dẹp - <span class="badge">@Model.Rooms.Count(x => x.RoomStatus.StatusID == 3)</span></a>
+            </li>*@
+            <li class="nav-room">
+                <a class="nav-link" data-toggle="tab" href="#wait">Chờ xác nhận - <span class="badge">@Model.Rooms.Count(x => x.RoomStatus.StatusID == 4)</span></a>
+            </li>
+
+
+        }
+        else if (Request.IsAuthenticated && User.IsInRole("Guest"))
+        {
+            <li class="nav-room">
+                <a class="nav-link active" data-toggle="tab" href="#all">Tất cả- <span class="badge">@Model.Rooms.Count()</span></a>
+            </li>
+            <li class="nav-room">
+                <a class="nav-link" data-toggle="tab" href="#empty">Trống - <span class="badge">@Model.Rooms.Count(x => x.RoomStatus.StatusID == 1)</span></a>
+            </li>
+            <li class="nav-room">
+                <a class="nav-link" data-toggle="tab" href="#mine">Phòng của tôi - <span class="badge">@ViewBag.ordercount</span></a>
+            </li>
+        }
+        else
+        {
+            <li class="nav-room">
+                <a class="nav-link active" data-toggle="tab" href="#all">Tất cả- <span class="badge">@Model.Rooms.Count()</span></a>
+            </li>
+            <li class="nav-room">
+                <a class="nav-link" data-toggle="tab" href="#empty">Trống - <span class="badge">@Model.Rooms.Count(x => x.RoomStatus.StatusID == 1)</span></a>
+            </li>
+
+        }
+    </ul>
+
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <div id="all" class="container tab-pane active">
+            <br>
+            <h2>Tất cả phòng</h2>
+            <h3>Tầng 1 (Standard):</h3>
+            <div class="row">
+                @foreach (var room in Model.Rooms)
+                {
+                    if (room.RoomName > 100 && room.RoomName <= 199)
+                    {
+                        if (room.RoomStatus.StatusID == 1)
+                        {
+                            <div class="col-sm-4 box-room empty table-bordered" onclick="location.href='@Url.Action("Create", "Order",new { id = room.RoomId })'">
+                                <div class="row room-info" style="background-color:@Html.DisplayFor(modelroom => room.RoomStatus.StatusColor)">
+                                    <div class="room-name col-sm-4">
+                                        <h4>@Html.DisplayFor(modelroom => room.RoomName)</h4>
+                                    </div>
+                                    <div class="room-type col-sm-4">
+                                        @Html.DisplayFor(modelroom => room.RoomType.TypeName)
+                                    </div>
+                                    <div class="room-status col-sm-4">
+                                        @Html.DisplayFor(modelroom => room.RoomStatus.StatusName)
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    @Html.RouteLink("Đặt Phòng", new { action = "Create", controller = "Order", id = room.RoomId }, htmlAttributes: new { @class = "order-btn room-btn btn btn-success" })
+                                </div>
+                            </div>
+                        }
+                        if (room.RoomStatus.StatusID == 4)
+                        {
+                            foreach (var order in Model.Orders)
+                            {
+                                if (order.RoomId == room.RoomId && order.Confirm == false)
+                                {
+                                    if (User.IsInRole("Admin") || User.IsInRole("Employee"))
+                                    {
+                                        <div class="col-sm-4 box-room wait table-bordered" onclick="location.href='@Url.Action("Confirm", "Order",new { id = order.OrderId })'">
+                                            <div class="row room-info" style="background-color:@Html.DisplayFor(modelroom => room.RoomStatus.StatusColor)">
+                                                <div class="room-name col-sm-4">
+                                                    <h4>@Html.DisplayFor(modelroom => room.RoomName)</h4>
+                                                </div>
+                                                <div class="room-type col-sm-4">
+                                                    @Html.DisplayFor(modelroom => room.RoomType.TypeName)
+                                                </div>
+                                                <div class="room-status col-sm-4">
+                                                    @Html.DisplayFor(modelroom => room.RoomStatus.StatusName)
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="box-room-footer">
+                                                    <table class="box_room-table">
+                                                        <tr>
+                                                            @if (order.OrderDetails.FirstOrDefault() != null)
+                                                            {
+                                                                if (order.OrderDetails.FirstOrDefault().UserId != null)
+                                                                {
+                                                                    <th class="col-sm-10">Người Đặt:@order.OrderDetails.FirstOrDefault().ApplicationContext.FullName</th>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <th class="col-sm-10">Người Đặt:@order.OrderDetails.FirstOrDefault().Guest.FullName</th>
+                                                                }
+                                                            }
+                                                            else
+                                                            {
+                                                                <th class="col-sm-10">Người Đặt:</th>
+                                                            }
+                                                            <td>
+                                                                @Html.RouteLink("Xác nhận", new { action = "Confirm", controller = "Order", id = order.OrderId }, htmlAttributes: new { @class = "confirm-btn room-btn btn btn-primary col-sm- 2" })
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th class="col-sm-12">Ngày đến:@order.CheckIn</th>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th class="col-sm-12">Ngày đi:@order.CheckOut</th>
+                                                            <td></td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    }
+                                    else
+                                    {
+                                        <div class="col-sm-4 box-room wait table-bordered">
+                                            <div class="row room-info" style="background-color:@Html.DisplayFor(modelroom => room.RoomStatus.StatusColor)">
+                                                <div class="room-name col-sm-4">
+                                                    <h4>@Html.DisplayFor(modelroom => room.RoomName)</h4>
+                                                </div>
+                                                <div class="room-type col-sm-4">
+                                                    @Html.DisplayFor(modelroom => room.RoomType.TypeName)
+                                                </div>
+                                                <div class="room-status col-sm-4">
+                                                    @Html.DisplayFor(modelroom => room.RoomStatus.StatusName)
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="box-room-footer">
+                                                    <table class="box_room-table">
+                                                        <tr>
+                                                            @if (order.OrderDetails.FirstOrDefault() != null)
+                                                            {
+                                                                if (order.OrderDetails.FirstOrDefault().UserId != null)
+                                                                {
+                                                                    <th class="col-sm-10">Người Đặt:@order.OrderDetails.FirstOrDefault().ApplicationContext.FullName</th>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <th class="col-sm-10">Người Đặt:@order.OrderDetails.FirstOrDefault().Guest.FullName</th>
+                                                                }
+                                                            }
+                                                            else
+                                                            {
+                                                                <th class="col-sm-10">Người Đặt:</th>
+                                                            }
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th class="col-sm-12">Ngày đến:@order.CheckIn</th>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th class="col-sm-12">Ngày đi:@order.CheckOut</th>
+                                                            <td></td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    }
+                                }
+                            }
+                        }
+                        if (room.RoomStatus.StatusID == 2)
+                        {
+                            foreach (var order in Model.Orders)
+                            {
+                                if (order.RoomId == room.RoomId && order.Confirm == true && order.Pay == false)
+                                {
+                                    if (User.IsInRole("Admin") || User.IsInRole("Employee"))
+                                    {
+                                        <div class="col-sm-4 box-room ordered table-bordered" onclick="location.href='@Url.Action("Create", "Payment",new { id = order.OrderId })'">
+                                            <div class="row room-info" style="background-color:@Html.DisplayFor(modelroom => room.RoomStatus.StatusColor)">
+                                                <div class="room-name col-sm-4">
+                                                    <h4>@Html.DisplayFor(modelroom => room.RoomName)</h4>
+                                                </div>
+                                                <div class="room-type col-sm-4">
+                                                    @Html.DisplayFor(modelroom => room.RoomType.TypeName)
+                                                </div>
+                                                <div class="room-status col-sm-4">
+                                                    @Html.DisplayFor(modelroom => room.RoomStatus.StatusName)
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="box-room-footer">
+                                                    <table class="box_room-table">
+                                                        <tr>
+                                                            @if (order.OrderDetails.FirstOrDefault() != null)
+                                                            {
+                                                                if (order.OrderDetails.FirstOrDefault().UserId != null)
+                                                                {
+                                                                    <th class="col-sm-10">Người Đặt:@order.OrderDetails.FirstOrDefault().ApplicationContext.FullName</th>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <th class="col-sm-10">Người Đặt:@order.OrderDetails.FirstOrDefault().Guest.FullName</th>
+                                                                }
+                                                            }
+                                                            else
+                                                            {
+                                                                <th class="col-sm-10">Người Đặt:</th>
+                                                            }
+                                                            <td>
+                                                                @if (room.StatusID == 2 && (User.IsInRole("Admin") || User.IsInRole("Employee")))
+                                                                {
+                                                                    @Html.RouteLink("Thanh Toán", new { action = "Create", controller = "Payment", id = order.OrderId }, htmlAttributes: new { @class = "pay-btn room-btn btn btn-danger col-sm- 2" })
+                                                                }
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th class="col-sm-12">Ngày đến:@order.CheckIn</th>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th class="col-sm-12">Ngày đi:@order.CheckOut</th>
+                                                            <td></td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="col-sm-4 box-room ordered table-bordered">
+                                            <div class="row room-info" style="background-color:@Html.DisplayFor(modelroom => room.RoomStatus.StatusColor)">
+                                                <div class="room-name col-sm-4">
+                                                    <h4>@Html.DisplayFor(modelroom => room.RoomName)</h4>
+                                                </div>
+                                                <div class="room-type col-sm-4">
+                                                    @Html.DisplayFor(modelroom => room.RoomType.TypeName)
+                                                </div>
+                                                <div class="room-status col-sm-4">
+                                                    @Html.DisplayFor(modelroom => room.RoomStatus.StatusName)
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="box-room-footer">
+                                                    <table class="box_room-table">
+                                                        <tr>
+                                                            @if (order.OrderDetails.FirstOrDefault() != null)
+                                                            {
+                                                                if (order.OrderDetails.FirstOrDefault().UserId != null)
+                                                                {
+                                                                    <th class="col-sm-10">Người Đặt:@order.OrderDetails.FirstOrDefault().ApplicationContext.FullName</th>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <th class="col-sm-10">Người Đặt:@order.OrderDetails.FirstOrDefault().Guest.FullName</th>
+                                                                }
+                                                            }
+                                                            else
+                                                            {
+                                                                <th class="col-sm-10">Người Đặt:</th>
+                                                            }
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th class="col-sm-12">Ngày đến:@order.CheckIn</th>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th class="col-sm-12">Ngày đi:@order.CheckOut</th>
+                                                            <td></td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            </div>
+            <hr />
+            <h3> Tầng 2(Superior):</h3>
+            <div class="row">
+                @foreach (var room in Model.Rooms)
+                {
+                    if (room.RoomName > 200 && room.RoomName <= 299)
+                    {
+                        if (room.RoomStatus.StatusID == 1)
+                        {
+                            <div class="col-sm-4 box-room empty table-bordered" onclick="location.href='@Url.Action("Create", "Order",new { id = room.RoomId })'">
+                                <div class="row room-info" style="background-color:@Html.DisplayFor(modelroom => room.RoomStatus.StatusColor)">
+                                    <div class="room-name col-sm-4">
+                                        <h4>@Html.DisplayFor(modelroom => room.RoomName)</h4>
+                                    </div>
+                                    <div class="room-type col-sm-4">
+                                        @Html.DisplayFor(modelroom => room.RoomType.TypeName)
+                                    </div>
+                                    <div class="room-status col-sm-4">
+                                        @Html.DisplayFor(modelroom => room.RoomStatus.StatusName)
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    @Html.RouteLink("Đặt Phòng", new { action = "Create", controller = "Order", id = room.RoomId }, htmlAttributes: new { @class = "order-btn room-btn btn btn-success" })
+                                </div>
+                            </div>
+                        }
+                        if (room.RoomStatus.StatusID == 4)
+                        {
+                            foreach (var order in Model.Orders)
+                            {
+                                if (order.RoomId == room.RoomId && order.Confirm == false)
+                                {
+                                    if (User.IsInRole("Admin") || User.IsInRole("Employee"))
+                                    {
+                                        <div class="col-sm-4 box-room wait table-bordered" onclick="location.href='@Url.Action("Confirm", "Order",new { id = order.OrderId })'">
+                                            <div class="row room-info" style="background-color:@Html.DisplayFor(modelroom => room.RoomStatus.StatusColor)">
+                                                <div class="room-name col-sm-4">
+                                                    <h4>@Html.DisplayFor(modelroom => room.RoomName)</h4>
+                                                </div>
+                                                <div class="room-type col-sm-4">
+                                                    @Html.DisplayFor(modelroom => room.RoomType.TypeName)
+                                                </div>
+                                                <div class="room-status col-sm-4">
+                                                    @Html.DisplayFor(modelroom => room.RoomStatus.StatusName)
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="box-room-footer">
+                                                    <table class="box_room-table">
+                                                        <tr>
+                                                            @if (order.OrderDetails.FirstOrDefault() != null)
+                                                            {
+                                                                if (order.OrderDetails.FirstOrDefault().UserId != null)
+                                                                {
+                                                                    <th class="col-sm-10">Người Đặt:@order.OrderDetails.FirstOrDefault().ApplicationContext.FullName</th>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <th class="col-sm-10">Người Đặt:@order.OrderDetails.FirstOrDefault().Guest.FullName</th>
+                                                                }
+                                                            }
+                                                            else
+                                                            {
+                                                                <th class="col-sm-10">Người Đặt:</th>
+                                                            }
+                                                            <td>
+                                                                @Html.RouteLink("Xác nhận", new { action = "Confirm", controller = "Order", id = order.OrderId }, htmlAttributes: new { @class = "confirm-btn room-btn btn btn-primary col-sm- 2" })
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th class="col-sm-12">Ngày đến:@order.CheckIn</th>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th class="col-sm-12">Ngày đi:@order.CheckOut</th>
+                                                            <td></td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    }
+                                    else
+                                    {
+                                        <div class="col-sm-4 box-room wait table-bordered">
+                                            <div class="row room-info" style="background-color:@Html.DisplayFor(modelroom => room.RoomStatus.StatusColor)">
+                                                <div class="room-name col-sm-4">
+                                                    <h4>@Html.DisplayFor(modelroom => room.RoomName)</h4>
+                                                </div>
+                                                <div class="room-type col-sm-4">
+                                                    @Html.DisplayFor(modelroom => room.RoomType.TypeName)
+                                                </div>
+                                                <div class="room-status col-sm-4">
+                                                    @Html.DisplayFor(modelroom => room.RoomStatus.StatusName)
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="box-room-footer">
+                                                    <table class="box_room-table">
+                                                        <tr>
+                                                            @if (order.OrderDetails.FirstOrDefault() != null)
+                                                            {
+                                                                if (order.OrderDetails.FirstOrDefault().UserId != null)
+                                                                {
+                                                                    <th class="col-sm-10">Người Đặt:@order.OrderDetails.FirstOrDefault().ApplicationContext.FullName</th>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <th class="col-sm-10">Người Đặt:@order.OrderDetails.FirstOrDefault().Guest.FullName</th>
+                                                                }
+                                                            }
+                                                            else
+                                                            {
+                                                                <th class="col-sm-10">Người Đặt:</th>
+                                                            }
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th class="col-sm-12">Ngày đến:@order.CheckIn</th>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th class="col-sm-12">Ngày đi:@order.CheckOut</th>
+                                                            <td></td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    }
+                                }
+                            }
+                        }
+                        if (room.RoomStatus.StatusID == 2)
+                        {
+                            foreach (var order in Model.Orders)
+                            {
+                                if (order.RoomId == room.RoomId && order.Confirm == true && order.Pay == false)
+                                {
+                                    if (User.IsInRole("Admin") || User.IsInRole("Employee"))
+                                    {
+                                        <div class="col-sm-4 box-room ordered table-bordered" onclick="location.href='@Url.Action("Create", "Payment",new { id = order.OrderId })'">
+                                            <div class="row room-info" style="background-color:@Html.DisplayFor(modelroom => room.RoomStatus.StatusColor)">
+                                                <div class="room-name col-sm-4">
+                                                    <h4>@Html.DisplayFor(modelroom => room.RoomName)</h4>
+                                                </div>
+                                                <div class="room-type col-sm-4">
+                                                    @Html.DisplayFor(modelroom => room.RoomType.TypeName)
+                                                </div>
+                                                <div class="room-status col-sm-4">
+                                                    @Html.DisplayFor(modelroom => room.RoomStatus.StatusName)
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="box-room-footer">
+                                                    <table class="box_room-table">
+                                                        <tr>
+                                                            @if (order.OrderDetails.FirstOrDefault() != null)
+                                                            {
+                                                                if (order.OrderDetails.FirstOrDefault().UserId != null)
+                                                                {
+                                                                    <th class="col-sm-10">Người Đặt:@order.OrderDetails.FirstOrDefault().ApplicationContext.FullName</th>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <th class="col-sm-10">Người Đặt:@order.OrderDetails.FirstOrDefault().Guest.FullName</th>
+                                                                }
+                                                            }
+                                                            else
+                                                            {
+                                                                <th class="col-sm-10">Người Đặt:</th>
+                                                            }
+                                                            <td>
+                                                                @if (room.StatusID == 2 && (User.IsInRole("Admin") || User.IsInRole("Employee")))
+                                                                {
+                                                                    @Html.RouteLink("Thanh Toán", new { action = "Create", controller = "Payment", id = order.OrderId }, htmlAttributes: new { @class = "pay-btn room-btn btn btn-danger col-sm- 2" })
+                                                                }
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th class="col-sm-12">Ngày đến:@order.CheckIn</th>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th class="col-sm-12">Ngày đi:@order.CheckOut</th>
+                                                            <td></td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="col-sm-4 box-room ordered table-bordered">
+                                            <div class="row room-info" style="background-color:@Html.DisplayFor(modelroom => room.RoomStatus.StatusColor)">
+                                                <div class="room-name col-sm-4">
+                                                    <h4>@Html.DisplayFor(modelroom => room.RoomName)</h4>
+                                                </div>
+                                                <div class="room-type col-sm-4">
+                                                    @Html.DisplayFor(modelroom => room.RoomType.TypeName)
+                                                </div>
+                                                <div class="room-status col-sm-4">
+                                                    @Html.DisplayFor(modelroom => room.RoomStatus.StatusName)
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="box-room-footer">
+                                                    <table class="box_room-table">
+                                                        <tr>
+                                                            @if (order.OrderDetails.FirstOrDefault() != null)
+                                                            {
+                                                                if (order.OrderDetails.FirstOrDefault().UserId != null)
+                                                                {
+                                                                    <th class="col-sm-10">Người Đặt:@order.OrderDetails.FirstOrDefault().ApplicationContext.FullName</th>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <th class="col-sm-10">Người Đặt:@order.OrderDetails.FirstOrDefault().Guest.FullName</th>
+                                                                }
+                                                            }
+                                                            else
+                                                            {
+                                                                <th class="col-sm-10">Người Đặt:</th>
+                                                            }
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th class="col-sm-12">Ngày đến:@order.CheckIn</th>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th class="col-sm-12">Ngày đi:@order.CheckOut</th>
+                                                            <td></td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            </div>
+            <hr />
+            <h3>Tầng 3 (Deluxe):</h3>
+            <div class="row">
+                @foreach (var room in Model.Rooms)
+                {
+                    if (room.RoomName > 300 && room.RoomName <= 399)
+                    {
+                        if (room.RoomStatus.StatusID == 1)
+                        {
+                            <div class="col-sm-4 box-room empty table-bordered" onclick="location.href='@Url.Action("Create", "Order",new { id = room.RoomId })'">
+                                <div class="row room-info" style="background-color:@Html.DisplayFor(modelroom => room.RoomStatus.StatusColor)">
+                                    <div class="room-name col-sm-4">
+                                        <h4>@Html.DisplayFor(modelroom => room.RoomName)</h4>
+                                    </div>
+                                    <div class="room-type col-sm-4">
+                                        @Html.DisplayFor(modelroom => room.RoomType.TypeName)
+                                    </div>
+                                    <div class="room-status col-sm-4">
+                                        @Html.DisplayFor(modelroom => room.RoomStatus.StatusName)
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    @Html.RouteLink("Đặt Phòng", new { action = "Create", controller = "Order", id = room.RoomId }, htmlAttributes: new { @class = "order-btn room-btn btn btn-success" })
+                                </div>
+                            </div>
+                        }
+                        if (room.RoomStatus.StatusID == 4)
+                        {
+                            foreach (var order in Model.Orders)
+                            {
+                                if (order.RoomId == room.RoomId && order.Confirm == false)
+                                {
+                                    if (User.IsInRole("Admin") || User.IsInRole("Employee"))
+                                    {
+                                        <div class="col-sm-4 box-room wait table-bordered" onclick="location.href='@Url.Action("Confirm", "Order",new { id = order.OrderId })'">
+                                            <div class="row room-info" style="background-color:@Html.DisplayFor(modelroom => room.RoomStatus.StatusColor)">
+                                                <div class="room-name col-sm-4">
+                                                    <h4>@Html.DisplayFor(modelroom => room.RoomName)</h4>
+                                                </div>
+                                                <div class="room-type col-sm-4">
+                                                    @Html.DisplayFor(modelroom => room.RoomType.TypeName)
+                                                </div>
+                                                <div class="room-status col-sm-4">
+                                                    @Html.DisplayFor(modelroom => room.RoomStatus.StatusName)
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="box-room-footer">
+                                                    <table class="box_room-table">
+                                                        <tr>
+                                                            @if (order.OrderDetails.FirstOrDefault() != null)
+                                                            {
+                                                                if (order.OrderDetails.FirstOrDefault().UserId != null)
+                                                                {
+                                                                    <th class="col-sm-10">Người Đặt:@order.OrderDetails.FirstOrDefault().ApplicationContext.FullName</th>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <th class="col-sm-10">Người Đặt:@order.OrderDetails.FirstOrDefault().Guest.FullName</th>
+                                                                }
+                                                            }
+                                                            else
+                                                            {
+                                                                <th class="col-sm-10">Người Đặt:</th>
+                                                            }
+                                                            <td>
+                                                                @Html.RouteLink("Xác nhận", new { action = "Confirm", controller = "Order", id = order.OrderId }, htmlAttributes: new { @class = "confirm-btn room-btn btn btn-primary col-sm- 2" })
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th class="col-sm-12">Ngày đến:@order.CheckIn</th>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th class="col-sm-12">Ngày đi:@order.CheckOut</th>
+                                                            <td></td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    }
+                                    else
+                                    {
+                                        <div class="col-sm-4 box-room wait table-bordered">
+                                            <div class="row room-info" style="background-color:@Html.DisplayFor(modelroom => room.RoomStatus.StatusColor)">
+                                                <div class="room-name col-sm-4">
+                                                    <h4>@Html.DisplayFor(modelroom => room.RoomName)</h4>
+                                                </div>
+                                                <div class="room-type col-sm-4">
+                                                    @Html.DisplayFor(modelroom => room.RoomType.TypeName)
+                                                </div>
+                                                <div class="room-status col-sm-4">
+                                                    @Html.DisplayFor(modelroom => room.RoomStatus.StatusName)
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="box-room-footer">
+                                                    <table class="box_room-table">
+                                                        <tr>
+                                                            @if (order.OrderDetails.FirstOrDefault() != null)
+                                                            {
+                                                                if (order.OrderDetails.FirstOrDefault().UserId != null)
+                                                                {
+                                                                    <th class="col-sm-10">Người Đặt:@order.OrderDetails.FirstOrDefault().ApplicationContext.FullName</th>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <th class="col-sm-10">Người Đặt:@order.OrderDetails.FirstOrDefault().Guest.FullName</th>
+                                                                }
+                                                            }
+                                                            else
+                                                            {
+                                                                <th class="col-sm-10">Người Đặt:</th>
+                                                            }
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th class="col-sm-12">Ngày đến:@order.CheckIn</th>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th class="col-sm-12">Ngày đi:@order.CheckOut</th>
+                                                            <td></td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    }
+                                }
+                            }
+                        }
+                        if (room.RoomStatus.StatusID == 2)
+                        {
+                            foreach (var order in Model.Orders)
+                            {
+                                if (order.RoomId == room.RoomId && order.Confirm == true && order.Pay == false)
+                                {
+                                    if (User.IsInRole("Admin") || User.IsInRole("Employee"))
+                                    {
+                                        <div class="col-sm-4 box-room ordered table-bordered" onclick="location.href='@Url.Action("Create", "Payment",new { id = order.OrderId })'">
+                                            <div class="row room-info" style="background-color:@Html.DisplayFor(modelroom => room.RoomStatus.StatusColor)">
+                                                <div class="room-name col-sm-4">
+                                                    <h4>@Html.DisplayFor(modelroom => room.RoomName)</h4>
+                                                </div>
+                                                <div class="room-type col-sm-4">
+                                                    @Html.DisplayFor(modelroom => room.RoomType.TypeName)
+                                                </div>
+                                                <div class="room-status col-sm-4">
+                                                    @Html.DisplayFor(modelroom => room.RoomStatus.StatusName)
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="box-room-footer">
+                                                    <table class="box_room-table">
+                                                        <tr>
+                                                            @if (order.OrderDetails.FirstOrDefault() != null)
+                                                            {
+                                                                if (order.OrderDetails.FirstOrDefault().UserId != null)
+                                                                {
+                                                                    <th class="col-sm-10">Người Đặt:@order.OrderDetails.FirstOrDefault().ApplicationContext.FullName</th>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <th class="col-sm-10">Người Đặt:@order.OrderDetails.FirstOrDefault().Guest.FullName</th>
+                                                                }
+                                                            }
+                                                            else
+                                                            {
+                                                                <th class="col-sm-10">Người Đặt:</th>
+                                                            }
+                                                            <td>
+                                                                @if (room.StatusID == 2 && (User.IsInRole("Admin") || User.IsInRole("Employee")))
+                                                                {
+                                                                    @Html.RouteLink("Thanh Toán", new { action = "Create", controller = "Payment", id = order.OrderId }, htmlAttributes: new { @class = "pay-btn room-btn btn btn-danger col-sm- 2" })
+                                                                }
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th class="col-sm-12">Ngày đến:@order.CheckIn</th>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th class="col-sm-12">Ngày đi:@order.CheckOut</th>
+                                                            <td></td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="col-sm-4 box-room ordered table-bordered">
+                                            <div class="row room-info" style="background-color:@Html.DisplayFor(modelroom => room.RoomStatus.StatusColor)">
+                                                <div class="room-name col-sm-4">
+                                                    <h4>@Html.DisplayFor(modelroom => room.RoomName)</h4>
+                                                </div>
+                                                <div class="room-type col-sm-4">
+                                                    @Html.DisplayFor(modelroom => room.RoomType.TypeName)
+                                                </div>
+                                                <div class="room-status col-sm-4">
+                                                    @Html.DisplayFor(modelroom => room.RoomStatus.StatusName)
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="box-room-footer">
+                                                    <table class="box_room-table">
+                                                        <tr>
+                                                            @if (order.OrderDetails.FirstOrDefault() != null)
+                                                            {
+                                                                if (order.OrderDetails.FirstOrDefault().UserId != null)
+                                                                {
+                                                                    <th class="col-sm-10">Người Đặt:@order.OrderDetails.FirstOrDefault().ApplicationContext.FullName</th>
+                                                                }
+                                                                else
+                                                                {
+                                                                    <th class="col-sm-10">Người Đặt:@order.OrderDetails.FirstOrDefault().Guest.FullName</th>
+                                                                }
+                                                            }
+                                                            else
+                                                            {
+                                                                <th class="col-sm-10">Người Đặt:</th>
+                                                            }
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th class="col-sm-12">Ngày đến:@order.CheckIn</th>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th class="col-sm-12">Ngày đi:@order.CheckOut</th>
+                                                            <td></td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            </div>
+        </div>
+        <div id="empty" class="container tab-pane fade">
+            <br>
+            <h3>Phòng trống</h3>
+            <div class="row">
+                @foreach (var room in Model.Rooms)
+                {
+                    if (room.RoomStatus.StatusID == 1)
+                    {
+                        <div class="col-sm-4 box-room empty table-bordered" onclick="location.href='@Url.Action("Create", "Order",new { id = room.RoomId })'">
+                            <div class="row room-info" style="background-color:@Html.DisplayFor(modelroom => room.RoomStatus.StatusColor)">
+                                <div class="room-name col-sm-4">
+                                    <h4>@Html.DisplayFor(modelroom => room.RoomName)</h4>
+                                </div>
+                                <div class="room-type col-sm-4">
+                                    @Html.DisplayFor(modelroom => room.RoomType.TypeName)
+                                </div>
+                                <div class="room-status col-sm-4">
+                                    @Html.DisplayFor(modelroom => room.RoomStatus.StatusName)
+                                </div>
+                            </div>
+                            <div class="row">
+                                @Html.RouteLink("Đặt Phòng", new { action = "Create", controller = "Order", id = room.RoomId }, htmlAttributes: new { @class = "order-btn room-btn btn btn-success" })
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+        <div id="ordered" class="container tab-pane fade">
+            <br>
+            <h3>Đã đặt</h3>
+            <div class="row">
+                @foreach (var room in Model.Rooms)
+                {
+                    if (room.RoomStatus.StatusID == 2)
+                    {
+                        foreach (var order in Model.Orders)
+                        {
+                            if (order.RoomId == room.RoomId && order.Confirm == true && order.Pay == false)
+                            {
+                                if (User.IsInRole("Admin") || User.IsInRole("Employee"))
+                                {
+                                    <div class="col-sm-4 box-room ordered table-bordered" onclick="location.href='@Url.Action("Create", "Payment",new { id = order.OrderId })'">
+                                        <div class="row room-info" style="background-color:@Html.DisplayFor(modelroom => room.RoomStatus.StatusColor)">
+                                            <div class="room-name col-sm-4">
+                                                <h4>@Html.DisplayFor(modelroom => room.RoomName)</h4>
+                                            </div>
+                                            <div class="room-type col-sm-4">
+                                                @Html.DisplayFor(modelroom => room.RoomType.TypeName)
+                                            </div>
+                                            <div class="room-status col-sm-4">
+                                                @Html.DisplayFor(modelroom => room.RoomStatus.StatusName)
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="box-room-footer">
+                                                <table class="box_room-table">
+                                                    <tr>
+                                                        @if (order.OrderDetails.FirstOrDefault() != null)
+                                                        {
+                                                            if (order.OrderDetails.FirstOrDefault().UserId != null)
+                                                            {
+                                                                <th class="col-sm-10">Người Đặt:@order.OrderDetails.FirstOrDefault().ApplicationContext.FullName</th>
+                                                            }
+                                                            else
+                                                            {
+                                                                <th class="col-sm-10">Người Đặt:@order.OrderDetails.FirstOrDefault().Guest.FullName</th>
+                                                            }
+                                                        }
+                                                        else
+                                                        {
+                                                            <th class="col-sm-10">Người Đặt:</th>
+                                                        }
+                                                        <td>
+                                                            @if (room.StatusID == 2 && (User.IsInRole("Admin") || User.IsInRole("Employee")))
+                                                            {
+                                                                @Html.RouteLink("Thanh Toán", new { action = "Create", controller = "Payment", id = order.OrderId }, htmlAttributes: new { @class = "pay-btn room-btn btn btn-danger col-sm- 2" })
+                                                            }
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th class="col-sm-12">Ngày đến:@order.CheckIn</th>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th class="col-sm-12">Ngày đi:@order.CheckOut</th>
+                                                        <td></td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="col-sm-4 box-room ordered table-bordered">
+                                        <div class="row room-info" style="background-color:@Html.DisplayFor(modelroom => room.RoomStatus.StatusColor)">
+                                            <div class="room-name col-sm-4">
+                                                <h4>@Html.DisplayFor(modelroom => room.RoomName)</h4>
+                                            </div>
+                                            <div class="room-type col-sm-4">
+                                                @Html.DisplayFor(modelroom => room.RoomType.TypeName)
+                                            </div>
+                                            <div class="room-status col-sm-4">
+                                                @Html.DisplayFor(modelroom => room.RoomStatus.StatusName)
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="box-room-footer">
+                                                <table class="box_room-table">
+                                                    <tr>
+                                                        @if (order.OrderDetails.FirstOrDefault() != null)
+                                                        {
+                                                            if (order.OrderDetails.FirstOrDefault().UserId != null)
+                                                            {
+                                                                <th class="col-sm-10">Người Đặt:@order.OrderDetails.FirstOrDefault().ApplicationContext.FullName</th>
+                                                            }
+                                                            else
+                                                            {
+                                                                <th class="col-sm-10">Người Đặt:@order.OrderDetails.FirstOrDefault().Guest.FullName</th>
+                                                            }
+                                                        }
+                                                        else
+                                                        {
+                                                            <th class="col-sm-10">Người Đặt:</th>
+                                                        }
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th class="col-sm-12">Ngày đến:@order.CheckIn</th>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th class="col-sm-12">Ngày đi:@order.CheckOut</th>
+                                                        <td></td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                        }
+                    }
+                }
+            </div>
+        </div>
+        <div id="mine" class="container tab-pane fade">
+            <br>
+            <h3>Phòng đã đặt</h3>
+            @if (User.IsInRole("Guest"))
+            {
+                <div class="row">
+                    @foreach (var room in Model.Rooms)
+                    {
+                        foreach (var order in Model.Orders)
+                        {
+                            if (order.OrderDetails.FirstOrDefault().ApplicationContext != null)
+                            {
+                                if (order.OrderDetails.FirstOrDefault().ApplicationContext.PhoneNumber == u.PhoneNumber && order.OrderId == order.OrderDetails.FirstOrDefault().OrderId && room.RoomId == order.RoomId)
+                                {
+                                    <div class="col-sm-4 box-room empty table-bordered" onclick="location.href='@Url.Action("Details", "Order",new { id = order.OrderId })'">
+                                        <div class="row room-info" style="background-color:@Html.DisplayFor(modelroom => room.RoomStatus.StatusColor)">
+                                            <div class="room-name col-sm-4">
+                                                <h4>@Html.DisplayFor(modelroom => room.RoomName)</h4>
+                                            </div>
+                                            <div class="room-type col-sm-4">
+                                                @Html.DisplayFor(modelroom => room.RoomType.TypeName)
+                                            </div>
+                                            <div class="room-status col-sm-4">
+                                                @Html.DisplayFor(modelroom => room.RoomStatus.StatusName)
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="box-room-footer">
+                                                <table class="box_room-table">
+                                                    <tr>
+                                                        @if (order.OrderDetails.FirstOrDefault() != null)
+                                                        {
+                                                            if (order.OrderDetails.FirstOrDefault().UserId != null)
+                                                            {
+                                                                <th class="col-sm-10">Người Đặt:@order.OrderDetails.FirstOrDefault().ApplicationContext.FullName</th>
+                                                            }
+                                                            else
+                                                            {
+                                                                <th class="col-sm-10">Người Đặt:@order.OrderDetails.FirstOrDefault().Guest.FullName</th>
+                                                            }
+                                                        }
+                                                        else
+                                                        {
+                                                            <th class="col-sm-10">Người Đặt:</th>
+                                                        }
+                                                        <td>
+                                                            @Html.RouteLink("Xem thông tin", new { action = "Details", controller = "Order", id = order.OrderId }, htmlAttributes: new { @class = "pay-btn room-btn btn btn-info col-sm- 2" })
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th class="col-sm-12">Ngày đến:@order.CheckIn</th>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th class="col-sm-12">Ngày đi:@order.CheckOut</th>
+                                                        <td></td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                                        @*<div class="row">
+                                                @Html.RouteLink("Chi Tiết Phòng", new { action = "Details", controller = "Order", id = order.OrderId }, htmlAttributes: new { @class = "order-btn room-btn btn btn-warning" })
+                                            </div>*@
+                                    </div>
+                                }
+                            }
+                        }
+                    }
+                </div>
+            }
+        </div>
+        <div id="dirty" class="container tab-pane fade">
+            <br>
+            <h3>Phòng Chờ Dọn Dẹp</h3>
+            <div class="row">
+                @foreach (var room in Model.Rooms)
+                {
+                    if (room.RoomStatus.StatusID == 3)
+                    {
+                        <div class="col-sm-4 box-room empty table-bordered" onclick="location.href='@Url.Action("Create", "Order",new { id = room.RoomId })'">
+                            <div class="row room-info" style="background-color:@Html.DisplayFor(modelroom => room.RoomStatus.StatusColor)">
+                                <div class="room-name col-sm-4">
+                                    <h4>@Html.DisplayFor(modelroom => room.RoomName)</h4>
+                                </div>
+                                <div class="room-type col-sm-4">
+                                    @Html.DisplayFor(modelroom => room.RoomType.TypeName)
+                                </div>
+                                <div class="room-status col-sm-4">
+                                    @Html.DisplayFor(modelroom => room.RoomStatus.StatusName)
+                                </div>
+                            </div>
+                            <div class="row">
+                                @Html.RouteLink("Đặt Phòng", new { action = "Create", controller = "Order", id = room.RoomId }, htmlAttributes: new { @class = "order-btn room-btn btn btn-success" })
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+        <div id="wait" class="container tab-pane fade">
+            <br>
+            <h3>Phòng đang chờ xác nhận</h3>
+            <div class="row">
+                @foreach (var room in Model.Rooms)
+                {
+                    if (room.RoomStatus.StatusID == 4)
+                    {
+                        foreach (var order in Model.Orders)
+                        {
+                            if (order.RoomId == room.RoomId && order.Confirm == false)
+                            {
+                                if (User.IsInRole("Admin") || User.IsInRole("Employee"))
+                                {
+                                    <div class="col-sm-4 box-room wait table-bordered" onclick="location.href='@Url.Action("Confirm", "Order",new { id = order.OrderId })'">
+                                        <div class="row room-info" style="background-color:@Html.DisplayFor(modelroom => room.RoomStatus.StatusColor)">
+                                            <div class="room-name col-sm-4">
+                                                <h4>@Html.DisplayFor(modelroom => room.RoomName)</h4>
+                                            </div>
+                                            <div class="room-type col-sm-4">
+                                                @Html.DisplayFor(modelroom => room.RoomType.TypeName)
+                                            </div>
+                                            <div class="room-status col-sm-4">
+                                                @Html.DisplayFor(modelroom => room.RoomStatus.StatusName)
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="box-room-footer">
+                                                <table class="box_room-table">
+                                                    <tr>
+                                                        @if (order.OrderDetails.FirstOrDefault() != null)
+                                                        {
+                                                            if (order.OrderDetails.FirstOrDefault().UserId != null)
+                                                            {
+                                                                <th class="col-sm-10">Người Đặt:@order.OrderDetails.FirstOrDefault().ApplicationContext.FullName</th>
+                                                            }
+                                                            else
+                                                            {
+                                                                <th class="col-sm-10">Người Đặt:@order.OrderDetails.FirstOrDefault().Guest.FullName</th>
+                                                            }
+                                                        }
+                                                        else
+                                                        {
+                                                            <th class="col-sm-10">Người Đặt:</th>
+                                                        }
+                                                        <td>
+                                                            @Html.RouteLink("Xác nhận", new { action = "Confirm", controller = "Order", id = order.OrderId }, htmlAttributes: new { @class = "confirm-btn room-btn btn btn-primary col-sm- 2" })
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th class="col-sm-12">Ngày đến:@order.CheckIn</th>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th class="col-sm-12">Ngày đi:@order.CheckOut</th>
+                                                        <td></td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                }
+                                else
+                                {
+                                    <div class="col-sm-4 box-room wait table-bordered">
+                                        <div class="row room-info" style="background-color:@Html.DisplayFor(modelroom => room.RoomStatus.StatusColor)">
+                                            <div class="room-name col-sm-4">
+                                                <h4>@Html.DisplayFor(modelroom => room.RoomName)</h4>
+                                            </div>
+                                            <div class="room-type col-sm-4">
+                                                @Html.DisplayFor(modelroom => room.RoomType.TypeName)
+                                            </div>
+                                            <div class="room-status col-sm-4">
+                                                @Html.DisplayFor(modelroom => room.RoomStatus.StatusName)
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="box-room-footer">
+                                                <table class="box_room-table">
+                                                    <tr>
+                                                        @if (order.OrderDetails.FirstOrDefault() != null)
+                                                        {
+                                                            if (order.OrderDetails.FirstOrDefault().UserId != null)
+                                                            {
+                                                                <th class="col-sm-10">Người Đặt:@order.OrderDetails.FirstOrDefault().ApplicationContext.FullName</th>
+                                                            }
+                                                            else
+                                                            {
+                                                                <th class="col-sm-10">Người Đặt:@order.OrderDetails.FirstOrDefault().Guest.FullName</th>
+                                                            }
+                                                        }
+                                                        else
+                                                        {
+                                                            <th class="col-sm-10">Người Đặt:</th>
+                                                        }
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th class="col-sm-12">Ngày đến:@order.CheckIn</th>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th class="col-sm-12">Ngày đi:@order.CheckOut</th>
+                                                        <td></td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                }
+                            }
+                        }
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</div>
+

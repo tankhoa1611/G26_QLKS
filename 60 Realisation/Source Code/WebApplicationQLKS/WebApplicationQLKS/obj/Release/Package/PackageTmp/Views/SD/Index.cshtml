@@ -1,0 +1,110 @@
+﻿@model WebApplicationQLKS.Models.RoomModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<table class="table">
+    @foreach (var item in Model.Rooms)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.RoomStatus.StatusName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RoomType.TypeName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RoomName)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.RoomId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.RoomId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.RoomId })
+            </td>
+        </tr>
+    }
+    @foreach (var item in Model.Orders)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RoomId)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.RoomId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.RoomId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.RoomId })
+            </td>
+        </tr>
+    }
+</table>
+
+<div class="row">
+    @foreach (var item in Model.Rooms)
+    {
+        if (item.RoomName > 0 && item.RoomName <= 6)
+        {
+    <div class="col-sm-4 box-room table-bordered">
+        <div class="room-info" style="background-color:@Html.DisplayFor(modelItem => item.RoomStatus.StatusColor)">
+            <div class="room-name">
+                <h4>@Html.DisplayFor(modelItem => item.RoomName)</h4>
+            </div>
+            <div class="room-type">
+                @Html.DisplayFor(modelItem => item.RoomType.TypeName)
+            </div>
+            <div class="room-status">
+                @Html.DisplayFor(modelItem => item.RoomStatus.StatusName)
+            </div>
+        </div>
+
+        <div class="room-control">
+            <div class="control-btn">
+                @if (item.StatusID == 1)
+                {
+                    @Html.RouteLink("Đặt Phòng", new { action = "Create", controller = "Order", id = item.RoomId }, htmlAttributes: new { @class = "order-btn" })
+                }
+                @if (item.StatusID == 2 && (User.IsInRole("Admin") || User.IsInRole("Employee")))
+                {
+                    @Html.RouteLink("Thanh Toán", new { action = "ThanhToan", controller = "Order", id = item.RoomId }, htmlAttributes: new { @class = "pay-btn" })
+                }
+                @if (item.StatusID == 2 && (User.IsInRole("Guest") || !Request.IsAuthenticated))
+                {
+                    @Html.RouteLink("Chờ Phòng trống", new { action = "ThanhToan", controller = "Order", rid = item.RoomId }, htmlAttributes: new { @class = "wait-btn" })
+                }
+                @if (item.StatusID == 3)
+                {
+                    <button>Dọn dẹp</button>
+                }
+            </div>
+        </div>
+
+        @if (item.RoomStatus.StatusName == "ordered")
+        {
+            foreach (var itemm in Model.Orders)
+            {
+                <div class="box-room-footer">
+                    <table class="box_room-table">
+                        <tr>
+                            <th>Người Đại Diện: @itemm.ApplicationContext.FullName</th>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th>Ngày đến  :</th>
+                            <td></td>
+                        </tr>
+                    </table>
+                </div>
+            }
+        }
+    </div>
+        }
+    }
+</div>

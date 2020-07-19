@@ -1,0 +1,10 @@
+﻿@model IEnumerable<WebApplicationQLKS.Models.Payment>
+@{
+    ViewBag.Title = "ThongKe";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ThongKe</h2>
+<h1>@Model.Sum(o=>o.TotalPay)</h1>
+
+

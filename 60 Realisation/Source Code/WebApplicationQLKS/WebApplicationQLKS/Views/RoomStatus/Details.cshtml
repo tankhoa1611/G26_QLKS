@@ -1,0 +1,35 @@
+﻿@model WebApplicationQLKS.Models.RoomStatus
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>RoomStatus</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.StatusName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StatusName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.StatusColor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.StatusColor)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.StatusID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

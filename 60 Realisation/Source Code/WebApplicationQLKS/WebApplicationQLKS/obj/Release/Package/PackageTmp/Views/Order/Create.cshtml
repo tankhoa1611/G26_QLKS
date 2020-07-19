@@ -1,0 +1,111 @@
+﻿@model WebApplicationQLKS.Models.Order
+
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var s = Session["User"] as WebApplicationQLKS.Models.ApplicationContext;
+}
+
+<h2>Đặt phòng</h2>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-horizontal">
+        <hr />
+        <div class="form-group">
+            @Html.LabelFor(model => model.QuantityGuest, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.QuantityGuest, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.QuantityGuest, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.RoomId, "RoomName", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*@Html.DropDownList("RoomId", null, htmlAttributes: new { @class = "form-control" })*@
+                <select name="id" class="form-control">
+                    @foreach(var room in @ViewBag.RoomId)
+                    {
+                        <option value=@room.RoomId>@room.RoomName</option>
+                    }
+                </select>
+                @Html.ValidationMessageFor(model => model.RoomId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CheckIn, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CheckIn, new { htmlAttributes = new { Type = "datetime-local", @class = "form-control" } })             
+                @Html.ValidationMessageFor(model => model.CheckIn, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        
+        <div class="form-group">
+            @Html.LabelFor(model => model.CheckOut, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+
+                <input type="hidden" id="datenow" value=@ViewBag.date>                
+                @Html.EditorFor(model => model.CheckOut, new { htmlAttributes = new { Type = "datetime-local", @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CheckOut, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Đặt Phòng" class="btn btn-default" />
+                @Html.ActionLink("Huỷ đặt", "Index",null,htmlAttributes:new { @class="btn btn-default"})
+            </div>
+        </div>
+    </div>
+}
+
+<script>
+    $(document).ready(function () {    
+        $('#CheckIn').change(function () {
+            var checkin = $('#CheckIn').val();
+            var checkout = $('#CheckOut').val();
+            
+            var date = new Date();            
+            var now = date.setMinutes(0);
+            var checknow = Date.parse(checkin);
+                                 
+            if (checknow < now ) {
+                alert('ngày check in ít nhất phải bằng ngày hiện tại, vui lòng nhập lại');
+                $('#CheckIn').val('');                
+            }
+            if (checkin > checkout && (checkin != '' && checkout != '')) {
+                alert('ngày check out phải lớn hơn hoặc bằng check in, vui lòng nhập lại');
+                $('#CheckOut').val('');
+            }
+        })
+        $('#CheckOut').change(function () {
+            var checkin = $('#CheckIn').val();
+            var checkout = $('#CheckOut').val();
+
+            if (checkin > checkout && (checkin != '' && checkout != '')) {
+                alert('ngày check out phải lớn hơn hoặc bằng check in, vui lòng nhập lại');
+                $('#CheckOut').val('');
+            }
+        })
+        $('#QuantityGuest').keyup(function () {
+            var quantity = $('#QuantityGuest').val();
+            //alert("test")
+
+            if (quantity <= 0 || quantity > 3) {
+                alert('Số lượng khách không hợp lệ');
+                $('#QuantityGuest').val('');
+            }
+        })
+    });
+</script>
+            @*var checkin = $('#datecreate').val();
+            var now = $('#datenow').val();
+            var r = $('#CheckIn').val();
+            var date = new Date();
+            var d = Date.parse(now);
+            var e = Date.parse(checkin);*@   

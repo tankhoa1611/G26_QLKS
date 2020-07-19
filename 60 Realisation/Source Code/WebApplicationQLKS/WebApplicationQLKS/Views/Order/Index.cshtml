@@ -1,0 +1,281 @@
+﻿@model IEnumerable<WebApplicationQLKS.Models.Order>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Quản lý đặt phòng</h1>
+
+@*<input  id="i1" list="dlist" type="text">
+    <button onclick="tryget()"></button>
+    <datalist id="dlist" class="list">
+        @foreach (var item in Model)
+        {
+            <option>@item.Room.RoomStatus.StatusName</option>
+        }
+    </datalist>
+
+    <script>
+        function tryget() {
+            $("#i1").attr("value", "test");
+            window.alert("test");
+            let list = document.getElementsByClassName("list")[0];
+
+            for (let i = 0; i < countries.length; i++) {
+                let option = document.createElement("option");
+                let text = document.createTextNode(countries[i].text);
+                option.appendChild(text);
+                list.appendChild(option);
+            }
+
+        }
+    </script>*@
+
+@*<p>
+    @Html.ActionLink("Đặt phòng mới", "Create")
+</p>*@
+<div class="container">
+    <br>
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+        @if (Request.IsAuthenticated && (User.IsInRole("Admin") || User.IsInRole("Employe")))
+        {
+            <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#all">Tất cả - <span>@Model.Count(x => x.OrderId != 0)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#wait">Chờ xác nhận - <span>@Model.Count(x => x.Confirm == false)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#confirm">Chờ thanh toán - <span>@Model.Count(x => x.Confirm == true && x.Pay == false)</span></a>
+            </li>
+
+        }
+        else if (Request.IsAuthenticated && User.IsInRole("Guest"))
+        {
+            @*<li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#mine">Phòng của tôi - <span>@Model.Where(x => x.OrderId == Model. StatusName == "mine")</span></a>
+                </li>*@
+        }
+    </ul>
+    <input class="form-control" id="myInput" type="text" placeholder="Search..">
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <div id="all" class="container tab-pane active">
+            <br>
+            <h3>Tất cả phòng</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Người đại diện</th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Room.RoomName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.QuantityGuest)
+                        </th>                 
+                        <th>
+                            @Html.DisplayNameFor(model => model.CheckIn)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.CheckOut)
+                        </th>
+                        <th>More</th>
+                    </tr>
+                </thead>
+
+                <tbody id="myTable">
+                    @foreach (var item in Model)
+                    {
+                    <tr>
+                        @if (item.OrderDetails != null)
+                        {
+                            if (item.OrderDetails.FirstOrDefault().ApplicationContext != null)
+                            {
+                                <td>@Html.DisplayFor(modelItem => item.OrderDetails.FirstOrDefault().ApplicationContext.FullName)</td>
+                            }
+                            if (item.OrderDetails.FirstOrDefault().Guest != null)
+                            {
+                                <td>@Html.DisplayFor(modelItem => item.OrderDetails.FirstOrDefault().Guest.FullName)</td>
+                            }
+                        }
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Room.RoomName)
+                        </td>
+                        <th>
+                            @Html.DisplayFor(model => item.QuantityGuest)
+                        </th>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CheckIn)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CheckOut)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.OrderId }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.OrderId }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.OrderId }) |
+                            @if ((User.IsInRole("Admin") || User.IsInRole("Employee")) && item.Confirm == true && item.Pay == false)
+                            {
+                                @Html.RouteLink("Thanh Toán", new { action = "Create", controller = "Payment", id = item.OrderId }, htmlAttributes: new { @class = "custom-btn order-btn" })
+                            }
+                            @if ((User.IsInRole("Admin") || User.IsInRole("Employee")) && item.Confirm == false)
+                            {
+                                @Html.ActionLink("Confirm", "Confirm", new { id = item.OrderId })
+                            }
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div id="wait" class="container tab-pane fade">
+            <br>
+            <h3>Phòng chờ xác nhận</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Người đại diện</th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Room.RoomName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.QuantityGuest)
+                        </th>                     
+                        <th>
+                            @Html.DisplayNameFor(model => model.CheckIn)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.CheckOut)
+                        </th>
+                        <th>More</th>
+                    </tr>
+                </thead>
+
+                <tbody id="myTable">
+                    @foreach (var item in Model)
+                    {
+                        if (item.Confirm == false)
+                        {
+                    <tr>
+                        @if (item.OrderDetails != null)
+                        {
+                            if (item.OrderDetails.FirstOrDefault().ApplicationContext != null)
+                            {
+                                <td>@Html.DisplayFor(modelItem => item.OrderDetails.FirstOrDefault().ApplicationContext.FullName)</td>
+                            }
+                            if (item.OrderDetails.FirstOrDefault().Guest != null)
+                            {
+                                <td>@Html.DisplayFor(modelItem => item.OrderDetails.FirstOrDefault().Guest.FullName)</td>
+                            }
+                        }
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Room.RoomName)
+                        </td>                     
+                        <th>
+                            @Html.DisplayFor(model => item.QuantityGuest)
+                        </th>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CheckIn)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CheckOut)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.OrderId }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.OrderId }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.OrderId }) |
+                            @if ((User.IsInRole("Admin") || User.IsInRole("Employee")) && item.Confirm == false)
+                            {
+                                @Html.ActionLink("Confirm", "Confirm", new { id = item.OrderId })
+                            }
+                        </td>
+                    </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div id="confirm" class="container tab-pane fade">
+            <br>
+            <h3>Phòng chờ thanh toán</h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Người đại diện</th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Room.RoomName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.QuantityGuest)
+                        </th>                    
+                        <th>
+                            @Html.DisplayNameFor(model => model.CheckIn)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.CheckOut)
+                        </th>
+                        <th>More</th>
+                    </tr>
+                </thead>
+
+                <tbody id="myTable">
+                    @foreach (var item in Model)
+                    {
+                        if (item.Confirm == true && item.Pay == false)
+                        {
+                    <tr>
+                        @if (item.OrderDetails != null)
+                        {
+                            if (item.OrderDetails.FirstOrDefault().ApplicationContext != null)
+                            {
+                                <td>@Html.DisplayFor(modelItem => item.OrderDetails.FirstOrDefault().ApplicationContext.FullName)</td>
+                            }
+                            if (item.OrderDetails.FirstOrDefault().Guest != null)
+                            {
+                                <td>@Html.DisplayFor(modelItem => item.OrderDetails.FirstOrDefault().Guest.FullName)</td>
+                            }
+                        }
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Room.RoomName)
+                        </td>                   
+                        <th>
+                            @Html.DisplayFor(model => item.QuantityGuest)
+                        </th>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CheckIn)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CheckOut)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.OrderId }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.OrderId }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.OrderId }) |
+                            @if ((User.IsInRole("Admin") || User.IsInRole("Employee")) && item.Pay == false)
+                            {
+                                @Html.RouteLink("Thanh Toán", new { action = "ThanhToan", controller = "Order", id = item.OrderId }, htmlAttributes: new { @class = "custom-btn order-btn" })
+                            }
+                        </td>
+                    </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $("#myInput").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("#myTable tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
+}

@@ -1,0 +1,93 @@
+﻿@model WebApplicationQLKS.Models.OrderModel
+
+@{
+    ViewBag.Title = "Auto";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Quản lý đặt phòng</h1>
+
+<form>
+</form>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>Guest</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @*<input id="i1" name="i1" list="dlist" type="text">*@
+    <input type="button" onclick="tryget()">
+    <datalist id="dlist" class="list">
+        @foreach (var item in Model.Guests)
+        {
+            <option>@item.GuestId</option>
+        }
+    </datalist>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Guest.GuestId, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Guest.GuestId, new { htmlAttributes = new { @id = "khoa", List = "dlist", @class = "form-control guestl" } })
+            @Html.ValidationMessageFor(model => model.Guest.GuestId, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.DropDownListFor(model => model.ApplicationContext.Id, new SelectList(" "), "--Select State--", new {@id = "khoa2", @class = "form-control userl" })
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<script>
+    function tryget() {
+        $("#i1").attr("value", "test");
+        var a = $("#khoa").text();
+        window.alert(a);
+        let list = document.getElementsByClassName("list")[0];
+
+        for (let i = 0; i < countries.length; i++) {
+            let option = document.createElement("option");
+            let text = document.createTextNode(countries[i].text);
+            option.appendChild(text);
+            list.appendChild(option);
+        }
+
+    }
+</script>
+<input type="text" id="test" />
+
+<script>
+    $(document).ready(function () {
+        $("#khoa").change(function () {
+            $.get("/OrderDetail/GetStateList", { GuestId: $("#khoa").val() }, function (data) {
+                var optionText = $("#khoa option:selected").text();                                
+                $("#khoa2").empty();                
+                $.each(data, function (index, row) {
+                    $("#khoa2").append("<option value='" + row + "'>" + row.FullName + "</option>");
+                    //$("#test").attr("value", row.FullName);
+                    $("#test").val(row.FullName);                                    
+                    $('#test').attr('readonly', true);    
+                    //$('#test').prop('disabled', true);
+                    //$('#test').attr('disabled', true);
+                });                
+            });
+        })        
+    });
+</script>
+
+<script>
+    $(document).ready(function () {
+        $("#khoa").change(function () {
+            var t = $("#khoa").text();
+            alert(t);
+        })
+    });
+</script>

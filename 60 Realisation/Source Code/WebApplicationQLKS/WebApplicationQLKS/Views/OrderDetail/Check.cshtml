@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewBag.Title = "Check";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Check</h2>
+
+@using (Html.BeginForm("Check", "OrderDetail",FormMethod.Get))
+{
+    @Html.AntiForgeryToken()
+<div class="form-horizontal">
+    <hr />    
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.Label("Số Điện Thoại:", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <input type="text" name="checkphone" id="checkphone" class="form-control" />
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="check" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
